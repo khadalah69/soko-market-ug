@@ -1,0 +1,10 @@
+worker.js
+schema.sql
+wrangler.jsonc
+package.json
+README.md
+.dev.vars
+.assetsignore
+.gitignore
+node_modules
+.git

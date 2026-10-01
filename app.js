@@ -25,6 +25,8 @@ const freeDeliveryThreshold = 150000;
 const money = new Intl.NumberFormat("en-UG", { maximumFractionDigits: 0 });
 const storageKey = "soko-market-cart";
 const catalogStorageKey = "soko-market-catalog";
+const paymentsApiBase = (window.SOKO_PAYMENTS_API_URL
+  || (location.hostname.endsWith(".workers.dev") ? location.origin : "")).replace(/\/+$/, "");
 let products = loadProducts();
 const state = { query: "", category: "All", maxPrice: maximumPrice, topRated: false, sort: "featured", cart: loadCart(), saved: new Set() };
 const productGrid = document.querySelector("#product-grid");
@@ -34,8 +36,12 @@ const overlay = document.querySelector("#overlay");
 const cartDrawer = document.querySelector("#cart-drawer");
 const authModal = document.querySelector("#auth-modal");
 const adminModal = document.querySelector("#admin-modal");
+const checkoutModal = document.querySelector("#checkout-modal");
 let toastTimer;
 let currentUser = null;
+let activePaymentReference = "";
+let paymentPollCount = 0;
+let paymentPollTimer;
 
 function formatPrice(value) {
   return `UGX ${money.format(value)}`;
@@ -181,7 +187,7 @@ function renderCart() {
     return `<article class="cart-line">
       <img src="${escapeHTML(product.image)}" alt="">
       <div class="cart-line-info"><strong>${escapeHTML(product.name)}</strong><span>${formatPrice(product.price)}</span>
-        <div class="quantity-control"><button type="button" data-quantity="${product.id}" data-change="-1" aria-label="Decrease quantity">−</button><span>${item.quantity}</span><button type="button" data-quantity="${product.id}" data-change="1" aria-label="Increase quantity">＋</button></div>
+        <div class="quantity-control"><button type="button" data-quantity="${product.id}" data-change="-1" aria-label="Decrease quantity">−</button><span>${item.quantity}</span><button type="button" data-quantity="${product.id}" data-change="1" aria-label="Increase quantity" ${item.quantity >= 10 ? "disabled" : ""}>＋</button></div>
       </div>
       <div class="cart-line-total"><span>${formatPrice(product.price * item.quantity)}</span><button class="remove-item" type="button" data-remove="${product.id}">Remove</button></div>
     </article>`;
@@ -193,6 +199,10 @@ function renderCart() {
 
 function addToCart(id) {
   const item = state.cart.find((entry) => entry.id === id);
+  if (item?.quantity >= 10) {
+    showToast("The maximum quantity for each item is 10.");
+    return;
+  }
   if (item) item.quantity += 1;
   else state.cart.push({ id, quantity: 1 });
   saveCart();
@@ -221,8 +231,80 @@ function closeDialogs() {
   cartDrawer.hidden = true;
   authModal.hidden = true;
   adminModal.hidden = true;
+  checkoutModal.hidden = true;
   filterPanel.classList.remove("mobile-open");
   document.body.style.overflow = "";
+  clearTimeout(paymentPollTimer);
+}
+
+function checkoutTotal() {
+  return state.cart.reduce((total, item) => {
+    const product = products.find((entry) => entry.id === item.id);
+    return total + (product ? product.price * item.quantity : 0);
+  }, 0);
+}
+
+function openCheckout() {
+  if (!state.cart.length) return;
+  cartDrawer.hidden = true;
+  const form = document.querySelector("#mobile-money-form");
+  form.hidden = false;
+  document.querySelector("#payment-status").hidden = true;
+  form.elements.name.value = currentUser?.name ?? "";
+  form.elements.email.value = currentUser?.email ?? "";
+  document.querySelector("#payment-total").textContent = formatPrice(checkoutTotal());
+  document.querySelector("#checkout-description").textContent = paymentsApiBase
+    ? "Choose your network. We'll send you to Flutterwave to authorize the payment."
+    : "Secure mobile money checkout becomes available once the payment backend is deployed.";
+  const submitButton = document.querySelector("#mobile-money-submit");
+  submitButton.disabled = !paymentsApiBase;
+  submitButton.innerHTML = 'Continue to payment <span>→</span>';
+  openDialog(checkoutModal);
+}
+
+function showPaymentStatus(title, message, status) {
+  document.querySelector("#mobile-money-form").hidden = true;
+  document.querySelector("#payment-status").hidden = false;
+  document.querySelector("#payment-status-title").textContent = title;
+  document.querySelector("#payment-status-message").textContent = message;
+  document.querySelector("#payment-status-icon").textContent = status === "successful" ? "✓" : status === "failed" ? "×" : "◌";
+  document.querySelector("#payment-status-icon").classList.toggle("is-success", status === "successful");
+  document.querySelector("#payment-status-icon").classList.toggle("is-failed", status === "failed");
+  document.querySelector("#check-payment-again").hidden = status !== "pending" && status !== "unknown";
+  document.querySelector("#payment-done").hidden = status !== "successful" && status !== "failed";
+}
+
+async function checkPaymentStatus(txRef) {
+  if (!paymentsApiBase) {
+    showPaymentStatus("Payment backend not connected", "Checkout is unavailable until the secure payment backend has been deployed and configured.", "failed");
+    return;
+  }
+  showPaymentStatus("Checking your payment", "Waiting for the mobile money network to confirm your payment. This can take a moment.", "pending");
+  try {
+    const response = await fetch(`${paymentsApiBase}/api/payments/${encodeURIComponent(txRef)}`, {
+      headers: { Accept: "application/json" },
+      cache: "no-store"
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || "We couldn't check the payment yet.");
+    if (result.status === "successful") {
+      state.cart = [];
+      saveCart();
+      renderCart();
+      showPaymentStatus("Payment confirmed", "Your UGX mobile money payment was verified. Thank you for shopping with Soko.", "successful");
+      return;
+    }
+    if (result.status === "failed") {
+      showPaymentStatus("Payment not completed", "The mobile money provider did not confirm the payment. Your cart is still here if you want to try again.", "failed");
+      return;
+    }
+    showPaymentStatus("Payment still processing", "Approve the payment on your phone. If you've already approved it, wait a moment and check again.", "pending");
+    paymentPollCount += 1;
+    if (paymentPollCount < 12) paymentPollTimer = setTimeout(() => checkPaymentStatus(txRef), 5000);
+  } catch (error) {
+    console.error("Could not check the mobile money payment status.", error);
+    showPaymentStatus("Unable to confirm yet", error.message || "Check your connection and try again.", "unknown");
+  }
 }
 
 function resetAdminForm() {
@@ -327,13 +409,60 @@ document.querySelector("#cart-items").addEventListener("click", (event) => {
   if (removeButton) state.cart = state.cart.filter((item) => item.id !== removeButton.dataset.remove);
   if (quantityButton) {
     const item = state.cart.find((entry) => entry.id === quantityButton.dataset.quantity);
+    if (Number(quantityButton.dataset.change) > 0 && item.quantity >= 10) {
+      showToast("The maximum quantity for each item is 10.");
+      return;
+    }
     item.quantity += Number(quantityButton.dataset.change);
     if (item.quantity <= 0) state.cart = state.cart.filter((entry) => entry !== item);
   }
   saveCart();
   renderCart();
 });
-document.querySelector("#checkout-button").addEventListener("click", () => showToast("Checkout is a demo. Connect a secure payment provider to accept orders."));
+document.querySelector("#checkout-button").addEventListener("click", openCheckout);
+document.querySelector("#close-checkout").addEventListener("click", closeDialogs);
+document.querySelector("#payment-done").addEventListener("click", closeDialogs);
+document.querySelector("#check-payment-again").addEventListener("click", () => {
+  paymentPollCount = 0;
+  checkPaymentStatus(activePaymentReference);
+});
+document.querySelector("#mobile-money-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  if (!form.reportValidity()) return;
+  if (!paymentsApiBase) {
+    showToast("The secure payment backend hasn't been deployed and connected yet.");
+    return;
+  }
+  const submitButton = document.querySelector("#mobile-money-submit");
+  submitButton.disabled = true;
+  submitButton.textContent = "Starting secure checkout…";
+  try {
+    const response = await fetch(`${paymentsApiBase}/api/checkout`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        items: state.cart.map(({ id, quantity }) => ({ id, quantity })),
+        expectedTotal: checkoutTotal(),
+        name: form.elements.name.value.trim(),
+        email: form.elements.email.value.trim(),
+        phone: form.elements.phone.value.trim().replace(/[\s-]/g, ""),
+        network: form.elements.network.value
+      })
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || "We couldn't start your payment. Please try again.");
+    const redirect = new URL(result.redirect_url);
+    if (redirect.protocol !== "https:") throw new Error("The payment provider returned an insecure checkout link.");
+    activePaymentReference = result.tx_ref;
+    window.location.assign(redirect.href);
+  } catch (error) {
+    console.error("Could not start the Uganda mobile money payment.", error);
+    showToast(error.message || "Payment is temporarily unavailable.");
+    submitButton.disabled = false;
+    submitButton.innerHTML = 'Continue to payment <span>→</span>';
+  }
+});
 document.querySelector("#account-button").addEventListener("click", () => openDialog(authModal));
 document.querySelector("#footer-account").addEventListener("click", () => openDialog(authModal));
 document.querySelector("#admin-button").addEventListener("click", () => {
@@ -457,3 +586,13 @@ document.querySelector("#current-year").textContent = new Date().getFullYear();
 renderCategoryFilters();
 renderProducts();
 renderCart();
+const paymentReturn = new URLSearchParams(location.search);
+const returnedPaymentReference = paymentReturn.get("tx_ref");
+if (paymentReturn.get("payment") === "return" && returnedPaymentReference && /^[a-f0-9-]{36}$/.test(returnedPaymentReference)) {
+  history.replaceState(null, "", `${location.pathname}${location.hash}`);
+  activePaymentReference = returnedPaymentReference;
+  paymentPollCount = 0;
+  showPaymentStatus("Checking your payment", "Verifying the payment with the provider. This can take a moment.", "pending");
+  openDialog(checkoutModal);
+  checkPaymentStatus(returnedPaymentReference);
+}

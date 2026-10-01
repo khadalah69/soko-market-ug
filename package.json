@@ -1,0 +1,14 @@
+{
+  "name": "soko-market-ug",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create soko-market-orders --update-config --binding DB",
+    "db:init": "wrangler d1 execute soko-market-orders --remote --file=./schema.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

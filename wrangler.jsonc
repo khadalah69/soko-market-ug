@@ -1,0 +1,20 @@
+{
+  "$schema": "https://unpkg.com/wrangler@4/config-schema.json",
+  "name": "soko-market-ug",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "soko-market-orders"
+    }
+  ],
+  "vars": {
+    "STOREFRONT_URL": "https://khadalah69.github.io/soko-market-ug/"
+  }
+}
