@@ -1,4 +1,27 @@
 (() => {
+  const licensedProductPhotos = {
+    "Apple:iPhone 16 Pro": {
+      image: "assets/products/iphone-16-pro.jpg",
+      photoCredit: "Kyu3a",
+      photoSource: "https://commons.wikimedia.org/wiki/File:Back_of_iPhone_16_Pro_-_1.jpg",
+      photoLicense: "CC BY-SA 4.0",
+      photoLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    "Samsung:Galaxy S25 Ultra": {
+      image: "assets/products/galaxy-s25-ultra.jpg",
+      photoCredit: "Alvis Jean",
+      photoSource: "https://commons.wikimedia.org/wiki/File:Samsung_Galaxy_S25_Ultra_Titanium_Silverblue.jpg",
+      photoLicense: "CC BY-SA 4.0",
+      photoLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    "Nintendo:Switch OLED Model": {
+      image: "assets/products/nintendo-switch-oled.png",
+      photoCredit: "PantheraLeo1359531",
+      photoSource: "https://commons.wikimedia.org/wiki/File:Nintendo_Switch_%E2%80%93_OLED-Modell,_Konsole_und_Dock_20230506.png",
+      photoLicense: "CC BY 4.0",
+      photoLicenseUrl: "https://creativecommons.org/licenses/by/4.0/"
+    }
+  };
   const phoneModels = [
     ["Apple", "iPhone 16e", 2650000], ["Apple", "iPhone 16 Plus", 3590000],
     ["Apple", "iPhone 16 Pro", 3790000], ["Apple", "iPhone 16 Pro Max", 4490000],
@@ -107,6 +130,7 @@
         const model = models[modelIndex % models.length];
         const cycle = Math.floor(modelIndex / models.length);
         const [brand, name, basePrice] = model;
+        const photo = licensedProductPhotos[`${brand}:${name}`];
         const variantIndex = cycle % variants.length;
         const [variant, adjustment] = variants[variantIndex];
         const id = `generated-${String(products.length + 1).padStart(3, "0")}`;
@@ -121,7 +145,11 @@
           rating: Number((4.3 + ((products.length * 7) % 8) / 10).toFixed(1)),
           reviews: 18 + (products.length * 17) % 180,
           badge: products.length % 4 === 0 ? "POPULAR" : products.length % 7 === 0 ? "TOP RATED" : "GREAT PICK",
-          image: "",
+          image: photo?.image ?? "",
+          photoCredit: photo?.photoCredit ?? "",
+          photoSource: photo?.photoSource ?? "",
+          photoLicense: photo?.photoLicense ?? "",
+          photoLicenseUrl: photo?.photoLicenseUrl ?? "",
           featured: products.length + 27
         });
       }

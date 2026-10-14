@@ -150,6 +150,8 @@ a { color: inherit; text-decoration: none; }
 .product-info { padding: 11px 11px 12px; }
 .product-category { color: #92928b; font-size: 8px; }
 .product-name { display: -webkit-box; min-height: 30px; margin: 5px 0 6px; overflow: hidden; color: #3d3e38; font-size: 10px; font-weight: 600; line-height: 1.45; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.photo-credit { margin: -2px 0 7px; color: #85857d; font-size: 7px; line-height: 1.4; }
+.photo-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .product-rating { display: flex; align-items: center; gap: 4px; margin-bottom: 8px; color: #a3a39c; font-size: 8px; }
 .product-rating span { color: #eba227; letter-spacing: .04em; }
 .price-row { display: flex; align-items: baseline; gap: 6px; }

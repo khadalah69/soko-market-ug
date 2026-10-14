@@ -17,8 +17,8 @@ const defaultProducts = [
   { id: "tv-a", name: "4K Smart TV 50-inch", category: "Electronics", brand: "Vision", price: 1290000, oldPrice: 1590000, rating: 4.6, reviews: 55, badge: "−19%", image: "", featured: 16 },
   { id: "laptop-a", name: "Everyday Laptop 15-inch, 16GB RAM", category: "Electronics", brand: "Lenovo", price: 2450000, oldPrice: 2890000, rating: 4.7, reviews: 36, badge: "−15%", image: "", featured: 17 },
   { id: "camera-a", name: "Pocket Digital Camera with Zoom", category: "Electronics", brand: "Canon", price: 650000, oldPrice: 790000, rating: 4.5, reviews: 24, badge: "−18%", image: "", featured: 18 },
-  { id: "iphone-16-a", name: "iPhone 16 Pro 128GB", category: "Phones & Tablets", brand: "Apple", price: 3250000, oldPrice: 3690000, rating: 4.8, reviews: 112, badge: "POPULAR", image: "", featured: 19 },
-  { id: "galaxy-s25-a", name: "Galaxy S25 Ultra 256GB", category: "Phones & Tablets", brand: "Samsung", price: 3890000, oldPrice: 4290000, rating: 4.8, reviews: 93, badge: "NEW ARRIVAL", image: "", featured: 20 },
+  { id: "iphone-16-a", name: "iPhone 16 Pro 128GB", category: "Phones & Tablets", brand: "Apple", price: 3250000, oldPrice: 3690000, rating: 4.8, reviews: 112, badge: "POPULAR", image: "assets/products/iphone-16-pro.jpg", photoCredit: "Kyu3a", photoSource: "https://commons.wikimedia.org/wiki/File:Back_of_iPhone_16_Pro_-_1.jpg", photoLicense: "CC BY-SA 4.0", photoLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", featured: 19 },
+  { id: "galaxy-s25-a", name: "Galaxy S25 Ultra 256GB", category: "Phones & Tablets", brand: "Samsung", price: 3890000, oldPrice: 4290000, rating: 4.8, reviews: 93, badge: "NEW ARRIVAL", image: "assets/products/galaxy-s25-ultra.jpg", photoCredit: "Alvis Jean", photoSource: "https://commons.wikimedia.org/wiki/File:Samsung_Galaxy_S25_Ultra_Titanium_Silverblue.jpg", photoLicense: "CC BY-SA 4.0", photoLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", featured: 20 },
   { id: "galaxy-a56-a", name: "Galaxy A56 5G 256GB", category: "Phones & Tablets", brand: "Samsung", price: 1490000, oldPrice: 1690000, rating: 4.7, reviews: 81, badge: "BESTSELLER", image: "", featured: 21 },
   { id: "redmi-note-14-a", name: "Redmi Note 14 Pro 5G 256GB", category: "Phones & Tablets", brand: "Xiaomi", price: 1190000, oldPrice: 1390000, rating: 4.6, reviews: 76, badge: "GREAT VALUE", image: "", featured: 22 },
   { id: "pixel-9a-a", name: "Pixel 9a 128GB", category: "Phones & Tablets", brand: "Google", price: 2190000, oldPrice: 2490000, rating: 4.7, reviews: 48, badge: "POPULAR", image: "", featured: 23 },
@@ -166,6 +166,9 @@ function renderProducts() {
       <div class="product-info">
         <span class="product-category">${escapeHTML(product.category)} · ${escapeHTML(product.brand)}</span>
         <h3 class="product-name">${escapeHTML(product.name)}</h3>
+        ${product.photoCredit && product.photoSource && product.photoLicense && product.photoLicenseUrl
+    ? `<div class="photo-credit">Photo: <a href="${escapeHTML(product.photoSource)}" target="_blank" rel="noopener noreferrer">${escapeHTML(product.photoCredit)} / Wikimedia Commons</a> · <a href="${escapeHTML(product.photoLicenseUrl)}" target="_blank" rel="noopener noreferrer">${escapeHTML(product.photoLicense)}</a></div>`
+    : ""}
         <div class="product-rating"><span>★★★★★</span> ${product.rating} (${product.reviews})</div>
         <div class="price-row"><strong class="product-price">${formatPrice(product.price)}</strong><span class="old-price">${formatPrice(product.oldPrice)}</span><span class="discount">${Math.round((1 - product.price / product.oldPrice) * 100)}% off</span></div>
         <button class="add-button" type="button" data-add="${product.id}"><span aria-hidden="true">＋</span> Add to cart</button>
