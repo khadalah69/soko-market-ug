@@ -1,30 +1,30 @@
 const defaultProducts = [
-  { id: "phone-a", name: "Nova X Pro 256GB — Midnight", category: "Phones & Tablets", brand: "Nova", price: 1850000, oldPrice: 2280000, rating: 4.8, reviews: 124, badge: "BESTSELLER", image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=700&q=80", featured: 1 },
-  { id: "headphones-a", name: "Studio Wireless Headphones", category: "Electronics", brand: "Soundcore", price: 255000, oldPrice: 342000, rating: 4.7, reviews: 86, badge: "−25%", image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80", featured: 2 },
-  { id: "sneakers-a", name: "Everyday Runner Sneakers", category: "Fashion", brand: "Stride", price: 130000, oldPrice: 177000, rating: 4.6, reviews: 53, badge: "−26%", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80", featured: 3 },
-  { id: "chair-a", name: "Oak & Weave Accent Chair", category: "Home & Living", brand: "Habitat", price: 527000, oldPrice: 655000, rating: 4.8, reviews: 31, badge: "−20%", image: "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=700&q=80", featured: 4 },
-  { id: "skincare-a", name: "Daily Glow Skincare Set", category: "Beauty", brand: "Glow Lab", price: 94000, oldPrice: 118000, rating: 4.5, reviews: 72, badge: "POPULAR", image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=80", featured: 5 },
-  { id: "coffee-a", name: "Fresh Roast Coffee Beans 1kg", category: "Supermarket", brand: "Kahawa Co.", price: 42000, oldPrice: 50000, rating: 4.9, reviews: 204, badge: "LOCAL PICK", image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=700&q=80", featured: 6 },
-  { id: "watch-a", name: "Active Smartwatch Series 5", category: "Electronics", brand: "Tempo", price: 342000, oldPrice: 456000, rating: 4.4, reviews: 48, badge: "−25%", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80", featured: 7 },
-  { id: "lamp-a", name: "Soft Glow Ceramic Table Lamp", category: "Home & Living", brand: "Habitat", price: 168000, oldPrice: 211000, rating: 4.7, reviews: 39, badge: "−20%", image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=700&q=80", featured: 8 },
-  { id: "tablet-a", name: "Tab Air 10.9” 128GB — Silver", category: "Phones & Tablets", brand: "Nova", price: 1112000, oldPrice: 1282000, rating: 4.6, reviews: 63, badge: "−13%", image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=700&q=80", featured: 9 },
-  { id: "bottle-a", name: "Insulated Everyday Water Bottle", category: "Supermarket", brand: "Daywell", price: 28000, oldPrice: 37000, rating: 4.3, reviews: 91, badge: "UNDER 30K", image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=700&q=80", featured: 10 },
-  { id: "dress-a", name: "Weekend Linen Blend Dress", category: "Fashion", brand: "Moyo", price: 99000, oldPrice: 142000, rating: 4.5, reviews: 28, badge: "−30%", image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=700&q=80", featured: 11 },
-  { id: "serum-a", name: "Vitamin C Brightening Serum", category: "Beauty", brand: "Glow Lab", price: 54000, oldPrice: 68000, rating: 4.6, reviews: 57, badge: "TOP RATED", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80", featured: 12 },
-  { id: "speaker-a", name: "Boom Portable Bluetooth Speaker", category: "Electronics", brand: "JBL", price: 189000, oldPrice: 249000, rating: 4.8, reviews: 97, badge: "BESTSELLER", image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80", featured: 13 },
-  { id: "speaker-b", name: "Pocket Mini Waterproof Speaker", category: "Electronics", brand: "JBL", price: 89000, oldPrice: 125000, rating: 4.6, reviews: 68, badge: "−29%", image: "https://images.unsplash.com/photo-1589003077984-894e133dabab?auto=format&fit=crop&w=700&q=80", featured: 14 },
-  { id: "soundbar-a", name: "Cinema Bookshelf Speaker", category: "Electronics", brand: "Audio", price: 399000, oldPrice: 499000, rating: 4.7, reviews: 42, badge: "−20%", image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=700&q=80", featured: 15 },
-  { id: "tv-a", name: "4K Smart TV 50-inch", category: "Electronics", brand: "Vision", price: 1290000, oldPrice: 1590000, rating: 4.6, reviews: 55, badge: "−19%", image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80", featured: 16 },
-  { id: "laptop-a", name: "Everyday Laptop 15-inch, 16GB RAM", category: "Electronics", brand: "Lenovo", price: 2450000, oldPrice: 2890000, rating: 4.7, reviews: 36, badge: "−15%", image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80", featured: 17 },
-  { id: "camera-a", name: "Pocket Digital Camera with Zoom", category: "Electronics", brand: "Canon", price: 650000, oldPrice: 790000, rating: 4.5, reviews: 24, badge: "−18%", image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=80", featured: 18 },
-  { id: "iphone-16-a", name: "iPhone 16 Pro 128GB", category: "Phones & Tablets", brand: "Apple", price: 3250000, oldPrice: 3690000, rating: 4.8, reviews: 112, badge: "POPULAR", image: "https://images.unsplash.com/photo-1726587912121-ea21fcc57ff8?auto=format&fit=crop&w=700&q=80", featured: 19 },
-  { id: "galaxy-s25-a", name: "Galaxy S25 Ultra 256GB", category: "Phones & Tablets", brand: "Samsung", price: 3890000, oldPrice: 4290000, rating: 4.8, reviews: 93, badge: "NEW ARRIVAL", image: "https://images.unsplash.com/photo-1738830234395-a351829a1c7b?auto=format&fit=crop&w=700&q=80", featured: 20 },
-  { id: "galaxy-a56-a", name: "Galaxy A56 5G 256GB", category: "Phones & Tablets", brand: "Samsung", price: 1490000, oldPrice: 1690000, rating: 4.7, reviews: 81, badge: "BESTSELLER", image: "https://images.unsplash.com/photo-1709744722656-9b850470293f?auto=format&fit=crop&w=700&q=80", featured: 21 },
-  { id: "redmi-note-14-a", name: "Redmi Note 14 Pro 5G 256GB", category: "Phones & Tablets", brand: "Xiaomi", price: 1190000, oldPrice: 1390000, rating: 4.6, reviews: 76, badge: "GREAT VALUE", image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=700&q=80", featured: 22 },
-  { id: "pixel-9a-a", name: "Pixel 9a 128GB", category: "Phones & Tablets", brand: "Google", price: 2190000, oldPrice: 2490000, rating: 4.7, reviews: 48, badge: "POPULAR", image: "https://images.unsplash.com/photo-1709744722656-9b850470293f?auto=format&fit=crop&w=700&q=80", featured: 23 },
-  { id: "ps5-slim-a", name: "PlayStation 5 Slim Digital Edition", category: "Electronics", brand: "Sony", price: 2190000, oldPrice: 2490000, rating: 4.9, reviews: 67, badge: "GAMER PICK", image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=700&q=80", featured: 24 },
-  { id: "airpods-pro-a", name: "AirPods Pro (2nd generation) with USB-C", category: "Electronics", brand: "Apple", price: 890000, oldPrice: 1050000, rating: 4.8, reviews: 84, badge: "TOP RATED", image: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=700&q=80", featured: 25 },
-  { id: "anker-powerbank-a", name: "Mi Power Bank 20K USB-C", category: "Electronics", brand: "Xiaomi", price: 245000, oldPrice: 299000, rating: 4.7, reviews: 59, badge: "TRAVEL PICK", image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=700&q=80", featured: 26 },
+  { id: "phone-a", name: "Nova X Pro 256GB — Midnight", category: "Phones & Tablets", brand: "Nova", price: 1850000, oldPrice: 2280000, rating: 4.8, reviews: 124, badge: "BESTSELLER", image: "", featured: 1 },
+  { id: "headphones-a", name: "Studio Wireless Headphones", category: "Electronics", brand: "Soundcore", price: 255000, oldPrice: 342000, rating: 4.7, reviews: 86, badge: "−25%", image: "", featured: 2 },
+  { id: "sneakers-a", name: "Everyday Runner Sneakers", category: "Fashion", brand: "Stride", price: 130000, oldPrice: 177000, rating: 4.6, reviews: 53, badge: "−26%", image: "", featured: 3 },
+  { id: "chair-a", name: "Oak & Weave Accent Chair", category: "Home & Living", brand: "Habitat", price: 527000, oldPrice: 655000, rating: 4.8, reviews: 31, badge: "−20%", image: "", featured: 4 },
+  { id: "skincare-a", name: "Daily Glow Skincare Set", category: "Beauty", brand: "Glow Lab", price: 94000, oldPrice: 118000, rating: 4.5, reviews: 72, badge: "POPULAR", image: "", featured: 5 },
+  { id: "coffee-a", name: "Fresh Roast Coffee Beans 1kg", category: "Supermarket", brand: "Kahawa Co.", price: 42000, oldPrice: 50000, rating: 4.9, reviews: 204, badge: "LOCAL PICK", image: "", featured: 6 },
+  { id: "watch-a", name: "Active Smartwatch Series 5", category: "Electronics", brand: "Tempo", price: 342000, oldPrice: 456000, rating: 4.4, reviews: 48, badge: "−25%", image: "", featured: 7 },
+  { id: "lamp-a", name: "Soft Glow Ceramic Table Lamp", category: "Home & Living", brand: "Habitat", price: 168000, oldPrice: 211000, rating: 4.7, reviews: 39, badge: "−20%", image: "", featured: 8 },
+  { id: "tablet-a", name: "Tab Air 10.9” 128GB — Silver", category: "Phones & Tablets", brand: "Nova", price: 1112000, oldPrice: 1282000, rating: 4.6, reviews: 63, badge: "−13%", image: "", featured: 9 },
+  { id: "bottle-a", name: "Insulated Everyday Water Bottle", category: "Supermarket", brand: "Daywell", price: 28000, oldPrice: 37000, rating: 4.3, reviews: 91, badge: "UNDER 30K", image: "", featured: 10 },
+  { id: "dress-a", name: "Weekend Linen Blend Dress", category: "Fashion", brand: "Moyo", price: 99000, oldPrice: 142000, rating: 4.5, reviews: 28, badge: "−30%", image: "", featured: 11 },
+  { id: "serum-a", name: "Vitamin C Brightening Serum", category: "Beauty", brand: "Glow Lab", price: 54000, oldPrice: 68000, rating: 4.6, reviews: 57, badge: "TOP RATED", image: "", featured: 12 },
+  { id: "speaker-a", name: "Boom Portable Bluetooth Speaker", category: "Electronics", brand: "JBL", price: 189000, oldPrice: 249000, rating: 4.8, reviews: 97, badge: "BESTSELLER", image: "", featured: 13 },
+  { id: "speaker-b", name: "Pocket Mini Waterproof Speaker", category: "Electronics", brand: "JBL", price: 89000, oldPrice: 125000, rating: 4.6, reviews: 68, badge: "−29%", image: "", featured: 14 },
+  { id: "soundbar-a", name: "Cinema Bookshelf Speaker", category: "Electronics", brand: "Audio", price: 399000, oldPrice: 499000, rating: 4.7, reviews: 42, badge: "−20%", image: "", featured: 15 },
+  { id: "tv-a", name: "4K Smart TV 50-inch", category: "Electronics", brand: "Vision", price: 1290000, oldPrice: 1590000, rating: 4.6, reviews: 55, badge: "−19%", image: "", featured: 16 },
+  { id: "laptop-a", name: "Everyday Laptop 15-inch, 16GB RAM", category: "Electronics", brand: "Lenovo", price: 2450000, oldPrice: 2890000, rating: 4.7, reviews: 36, badge: "−15%", image: "", featured: 17 },
+  { id: "camera-a", name: "Pocket Digital Camera with Zoom", category: "Electronics", brand: "Canon", price: 650000, oldPrice: 790000, rating: 4.5, reviews: 24, badge: "−18%", image: "", featured: 18 },
+  { id: "iphone-16-a", name: "iPhone 16 Pro 128GB", category: "Phones & Tablets", brand: "Apple", price: 3250000, oldPrice: 3690000, rating: 4.8, reviews: 112, badge: "POPULAR", image: "", featured: 19 },
+  { id: "galaxy-s25-a", name: "Galaxy S25 Ultra 256GB", category: "Phones & Tablets", brand: "Samsung", price: 3890000, oldPrice: 4290000, rating: 4.8, reviews: 93, badge: "NEW ARRIVAL", image: "", featured: 20 },
+  { id: "galaxy-a56-a", name: "Galaxy A56 5G 256GB", category: "Phones & Tablets", brand: "Samsung", price: 1490000, oldPrice: 1690000, rating: 4.7, reviews: 81, badge: "BESTSELLER", image: "", featured: 21 },
+  { id: "redmi-note-14-a", name: "Redmi Note 14 Pro 5G 256GB", category: "Phones & Tablets", brand: "Xiaomi", price: 1190000, oldPrice: 1390000, rating: 4.6, reviews: 76, badge: "GREAT VALUE", image: "", featured: 22 },
+  { id: "pixel-9a-a", name: "Pixel 9a 128GB", category: "Phones & Tablets", brand: "Google", price: 2190000, oldPrice: 2490000, rating: 4.7, reviews: 48, badge: "POPULAR", image: "", featured: 23 },
+  { id: "ps5-slim-a", name: "PlayStation 5 Slim Digital Edition", category: "Electronics", brand: "Sony", price: 2190000, oldPrice: 2490000, rating: 4.9, reviews: 67, badge: "GAMER PICK", image: "", featured: 24 },
+  { id: "airpods-pro-a", name: "AirPods Pro (2nd generation) with USB-C", category: "Electronics", brand: "Apple", price: 890000, oldPrice: 1050000, rating: 4.8, reviews: 84, badge: "TOP RATED", image: "", featured: 25 },
+  { id: "anker-powerbank-a", name: "Mi Power Bank 20K USB-C", category: "Electronics", brand: "Xiaomi", price: 245000, oldPrice: 299000, rating: 4.7, reviews: 59, badge: "TRAVEL PICK", image: "", featured: 26 },
   ...globalThis.SOKO_CATALOG.buildExpansion()
 ];
 
@@ -157,7 +157,9 @@ function renderProducts() {
   productGrid.innerHTML = displayed.map((product) => `
     <article class="product-card">
       <div class="product-image-wrap">
-        <img class="product-image" src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}" loading="lazy">
+        ${product.image
+    ? `<img class="product-image" src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}" loading="lazy">`
+    : `<div class="product-photo-placeholder" role="img" aria-label="Product photo unavailable"><span aria-hidden="true">▧</span><strong>Photo not provided</strong></div>`}
         <span class="product-badge">${product.badge}</span>
         <button class="wishlist-button ${state.saved.has(product.id) ? "is-saved" : ""}" type="button" data-save="${product.id}" aria-label="${state.saved.has(product.id) ? "Remove from" : "Add to"} wishlist">♡</button>
       </div>
@@ -342,7 +344,9 @@ function renderAdmin() {
     .slice()
     .sort((a, b) => a.name.localeCompare(b.name))
     .map((product) => `<article class="admin-product-row">
-      <img src="${escapeHTML(product.image)}" alt="">
+      ${product.image
+    ? `<img src="${escapeHTML(product.image)}" alt="">`
+    : `<div class="admin-photo-placeholder" aria-label="Product photo unavailable">No photo</div>`}
       <div class="admin-product-details"><strong>${escapeHTML(product.name)}</strong><span>${escapeHTML(product.category)} · ${escapeHTML(product.brand)}</span><span>${formatPrice(product.price)}</span></div>
       <div class="admin-row-actions"><button type="button" data-admin-edit="${escapeHTML(product.id)}">Edit</button><button type="button" data-admin-delete="${escapeHTML(product.id)}" aria-label="Delete ${escapeHTML(product.name)}">Delete</button></div>
     </article>`).join("");
@@ -510,10 +514,15 @@ document.querySelector("#admin-product-form").addEventListener("submit", (event)
   const form = event.currentTarget;
   if (!form.reportValidity()) return;
   const data = new FormData(form);
-  const image = new URL(String(data.get("image")));
-  if (image.protocol !== "https:") {
-    showToast("Use a secure HTTPS URL for product images.");
-    return;
+  const imageValue = String(data.get("image")).trim();
+  let image = "";
+  if (imageValue) {
+    const imageUrl = new URL(imageValue);
+    if (imageUrl.protocol !== "https:") {
+      showToast("Use a secure HTTPS URL for product images.");
+      return;
+    }
+    image = imageUrl.href;
   }
   const price = Number(data.get("price"));
   const oldPrice = Number(data.get("oldPrice"));
@@ -533,7 +542,7 @@ document.querySelector("#admin-product-form").addEventListener("submit", (event)
     rating: existing?.rating ?? 4.5,
     reviews: existing?.reviews ?? 0,
     badge: existing?.badge ?? "NEW",
-    image: image.href,
+    image,
     featured: existing?.featured ?? Math.max(...products.map((entry) => entry.featured), 0) + 1
   };
   const previousProducts = products;

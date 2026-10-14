@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=catalog-500-5">
-    <script src="catalog-data.js?v=catalog-500-5" defer></script>
-    <script src="app.js?v=catalog-500-5" defer></script>
+    <link rel="stylesheet" href="styles.css?v=catalog-500-6">
+    <script src="catalog-data.js?v=catalog-500-6" defer></script>
+    <script src="app.js?v=catalog-500-6" defer></script>
   </head>
   <body>
     <div class="announcement">
@@ -106,7 +106,7 @@
             </select>
           </label>
         </div>
-        <p class="catalog-note">Browse 500 sample listings. Photos are real product-type references and may not show the exact model; UGX prices, ratings, and review counts are illustrative.</p>
+        <p class="catalog-note">Browse 500 sample listings. Seller photos have not been supplied, so listings show a clear photo-unavailable placeholder instead of misleading stock images. UGX prices, ratings, and review counts are illustrative.</p>
         <div class="catalog-layout">
           <aside class="filters" aria-label="Product filters">
             <div class="filter-heading"><h3>Filters</h3><button id="clear-filters" type="button">Clear all</button></div>
@@ -217,7 +217,7 @@
             <div><label for="admin-product-price">Price (UGX)</label><input id="admin-product-price" name="price" type="number" min="1000" max="500000000" step="1000" placeholder="189000" required></div>
             <div><label for="admin-product-old-price">Was (UGX)</label><input id="admin-product-old-price" name="oldPrice" type="number" min="1000" max="500000000" step="1000" placeholder="249000" required></div>
           </div>
-          <label for="admin-product-image">Product image URL (HTTPS)</label><input id="admin-product-image" name="image" type="url" placeholder="https://example.com/product.jpg" required>
+          <label for="admin-product-image">Seller product photo URL (HTTPS, optional)</label><input id="admin-product-image" name="image" type="url" placeholder="https://example.com/actual-product.jpg">
           <div class="admin-form-actions"><button class="checkout-button" id="admin-save-button" type="submit">Add product <span>＋</span></button><button class="admin-cancel-button" id="admin-cancel-edit" type="button" hidden>Cancel edit</button></div>
         </form>
         <div class="admin-inventory"><div class="admin-inventory-heading"><div><h3>Product catalog</h3><p>Edit a listing or remove it from this browser.</p></div><span id="admin-list-count"></span></div><div class="admin-product-list" id="admin-product-list"></div></div>

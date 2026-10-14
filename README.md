@@ -4,13 +4,13 @@ A responsive, dependency-free storefront starter for an e-commerce marketplace, 
 
 ## Run locally
 
-Open `index.html` in a modern browser. Product imagery and web fonts are loaded from external URLs, so those assets need an internet connection. The storefront itself does not require a build step or package installation.
+Open `index.html` in a modern browser. Web fonts and seller-supplied product photo URLs require an internet connection. The storefront itself does not require a build step or package installation.
 
 ## Included
 
 - Responsive homepage with category navigation and product highlights.
 - Product catalog with live search, category, maximum-price, and rating filters, plus sorting.
-- A 500-item catalog covering 65 phone model families, tablets, audio, TVs, computers, cameras, gaming, fashion, home, beauty, and supermarket goods. Phone listings use sample storage variations. Product photos use verified model-specific images for select iPhone 16 Pro, Galaxy S25 Ultra, and Pixel 9 Pro listings, plus real product-type photos for the rest. Other photos may not depict the exact brand, model, color, or package. UGX prices are illustrative demo values, not live offers or verified stock. Products are rendered in pages of 36 for a faster catalog experience.
+- A 500-item sample catalog covering 65 phone model families, tablets, audio, TVs, computers, cameras, gaming, fashion, home, beauty, and supermarket goods. Phone listings use sample storage variations. No seller product photos have been supplied, so listings show a clear photo-unavailable placeholder rather than unrelated stock images. Add a genuine seller photo URL through the demo admin panel when one is available. UGX prices are illustrative demo values, not live offers or verified stock. Products are rendered in pages of 36 for a faster catalog experience.
 - Shared catalog data generates the same product IDs and server-calculated prices for the storefront and Worker; redeploy the Worker when the catalog changes.
 - Shopping cart with quantity controls, a subtotal, free-delivery threshold, and browser-local cart persistence.
 - Client-side registration form with basic browser validation.
@@ -22,7 +22,7 @@ Open `index.html` in a modern browser. Product imagery and web fonts are loaded 
 
 This is a frontend foundation, not a production commerce backend. Registration currently validates in the browser and creates a temporary, in-memory demo account; it does not transmit or persist the submitted password. Replace that flow with a server-backed identity provider before accepting accounts. Likewise, connect product inventory, orders, delivery, and a compliant payment provider before accepting purchases. Cart contents are stored in this browser's local storage and are not synchronized across devices.
 
-Product prices, ratings, review counts, product variations, and the free-delivery threshold are illustrative UGX demo data, not live merchant prices, verified reviews, stock, or exchange-rate conversions. The catalog does not represent 500 independently verified in-stock offers. Catalog photo and product metadata corrections replace the seeded listings on load while preserving locally added demo products.
+Product prices, ratings, review counts, product variations, and the free-delivery threshold are illustrative UGX demo data, not live merchant prices, verified reviews, stock, or exchange-rate conversions. The catalog does not represent 500 independently verified in-stock offers. Catalog product metadata replaces seeded listings on load while preserving locally added demo products. Genuine product photos must be supplied by the seller; the storefront does not verify externally entered image URLs.
 
 The admin dashboard is intentionally a local demo, not an authenticated management system: anyone who can open the storefront can edit its catalog in that browser. Catalog edits use local storage and do not publish to other shoppers. Never use this demo panel as a live admin tool without replacing it with server-side authentication, authorization, and a persistent product API.
 
