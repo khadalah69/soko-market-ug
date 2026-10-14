@@ -1,10 +1,18 @@
+import "./catalog-data.js";
+
 const productPrices = new Map([
   ["phone-a", 1850000], ["headphones-a", 255000], ["sneakers-a", 130000], ["chair-a", 527000],
   ["skincare-a", 94000], ["coffee-a", 42000], ["watch-a", 342000], ["lamp-a", 168000],
   ["tablet-a", 1112000], ["bottle-a", 28000], ["dress-a", 99000], ["serum-a", 54000],
   ["speaker-a", 189000], ["speaker-b", 89000], ["soundbar-a", 399000], ["tv-a", 1290000],
-  ["laptop-a", 2450000], ["camera-a", 650000]
+  ["laptop-a", 2450000], ["camera-a", 650000],
+  ["iphone-16-a", 3250000], ["galaxy-s25-a", 3890000], ["galaxy-a56-a", 1490000],
+  ["redmi-note-14-a", 1190000], ["pixel-9a-a", 2190000], ["ps5-slim-a", 2190000],
+  ["airpods-pro-a", 890000], ["anker-powerbank-a", 245000]
 ]);
+const generatedProductPrices = new Map(globalThis.SOKO_CATALOG.buildExpansion()
+  .map((product) => [product.id, product.price]));
+const catalogPrices = new Map([...productPrices, ...generatedProductPrices]);
 
 const jsonHeaders = { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" };
 const maxOrderAmount = 10000000;
@@ -118,7 +126,7 @@ async function handleCheckout(request, env, cors) {
 
   const quantities = new Map();
   for (const item of input.items) {
-    if (!item || typeof item.id !== "string" || !productPrices.has(item.id)
+    if (!item || typeof item.id !== "string" || !catalogPrices.has(item.id)
       || !Number.isSafeInteger(item.quantity) || item.quantity < 1 || item.quantity > maxQuantityPerItem) {
       return jsonResponse({ error: "Your cart has an invalid item or quantity. Refresh the shop and try again." }, 400, cors);
     }
@@ -129,7 +137,7 @@ async function handleCheckout(request, env, cors) {
   }
 
   const orderItems = [...quantities].map(([id, quantity]) => ({ id, quantity }));
-  const amount = orderItems.reduce((total, item) => total + productPrices.get(item.id) * item.quantity, 0);
+  const amount = orderItems.reduce((total, item) => total + catalogPrices.get(item.id) * item.quantity, 0);
   if (!Number.isSafeInteger(amount) || amount < 1 || amount > maxOrderAmount) {
     return jsonResponse({ error: "This order is above the current UGX demo checkout limit." }, 400, cors);
   }

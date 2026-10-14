@@ -9,8 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=mobile-money-1">
-    <script src="app.js?v=mobile-money-1" defer></script>
+    <link rel="stylesheet" href="styles.css?v=catalog-500-2">
+    <script src="catalog-data.js?v=catalog-500-2" defer></script>
+    <script src="app.js?v=catalog-500-2" defer></script>
   </head>
   <body>
     <div class="announcement">
@@ -105,6 +106,7 @@
             </select>
           </label>
         </div>
+        <p class="catalog-note">Browse 500 sample listings. Photos are real product-type references and may not show the exact model; UGX prices, ratings, and review counts are illustrative.</p>
         <div class="catalog-layout">
           <aside class="filters" aria-label="Product filters">
             <div class="filter-heading"><h3>Filters</h3><button id="clear-filters" type="button">Clear all</button></div>
@@ -129,6 +131,7 @@
               <button class="mobile-filter-button" id="mobile-filter-button" type="button">☷ Filters <span id="active-filter-count"></span></button>
             </div>
             <div class="product-grid" id="product-grid"></div>
+            <button class="primary-button load-more-button" id="load-more-products" type="button" hidden>Load more products</button>
             <div class="empty-state" id="empty-state" hidden>
               <span>⌕</span><h3>No finds this time</h3><p>Try another search or clear a filter to see more.</p><button class="primary-button" id="empty-clear" type="button">Clear filters</button>
             </div>

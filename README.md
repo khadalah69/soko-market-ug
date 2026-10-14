@@ -10,7 +10,8 @@ Open `index.html` in a modern browser. Product imagery and web fonts are loaded 
 
 - Responsive homepage with category navigation and product highlights.
 - Product catalog with live search, category, maximum-price, and rating filters, plus sorting.
-- Prices displayed in Ugandan shillings (UGX), with an expanded electronics catalog including Bluetooth speakers, a soundbar, a smart TV, a laptop, and a camera.
+- A 500-item catalog covering phones, tablets, audio, TVs, computers, cameras, gaming, fashion, home, beauty, and supermarket goods. It includes popular device families such as iPhone 16, Galaxy S25 and A56, Redmi Note 14 Pro, Pixel 9, PlayStation 5 Slim, and AirPods. Product-card photos are genuine Unsplash photographs representative of each product type; they are not guaranteed to depict the exact model or item. UGX prices are illustrative demo values, not live offers or verified stock. Products are rendered in pages of 36 for a faster catalog experience.
+- Shared catalog data generates the same product IDs and server-calculated prices for the storefront and Worker; redeploy the Worker when the catalog changes.
 - Shopping cart with quantity controls, a subtotal, free-delivery threshold, and browser-local cart persistence.
 - Client-side registration form with basic browser validation.
 - Wishlist toggles and a newsletter signup demo.
@@ -21,7 +22,7 @@ Open `index.html` in a modern browser. Product imagery and web fonts are loaded 
 
 This is a frontend foundation, not a production commerce backend. Registration currently validates in the browser and creates a temporary, in-memory demo account; it does not transmit or persist the submitted password. Replace that flow with a server-backed identity provider before accepting accounts. Likewise, connect product inventory, orders, delivery, and a compliant payment provider before accepting purchases. Cart contents are stored in this browser's local storage and are not synchronized across devices.
 
-Product prices and the free-delivery threshold are illustrative UGX demo values, not live merchant prices or exchange-rate conversions.
+Product prices, ratings, review counts, product variations, and the free-delivery threshold are illustrative UGX demo data, not live merchant prices, verified reviews, stock, or exchange-rate conversions. The catalog does not represent 500 independently verified in-stock offers.
 
 The admin dashboard is intentionally a local demo, not an authenticated management system: anyone who can open the storefront can edit its catalog in that browser. Catalog edits use local storage and do not publish to other shoppers. Never use this demo panel as a live admin tool without replacing it with server-side authentication, authorization, and a persistent product API.
 
@@ -38,9 +39,9 @@ The payment backend uses Flutterwave's Uganda mobile money collection endpoint f
 ### Deploy the payment backend
 
 1. Install a current Node.js LTS release and open a terminal in the project folder.
-2. Run `npm install`, then `npx wrangler login` and authenticate with your own Cloudflare account.
-3. Run `npm run db:create`. Wrangler creates the D1 database and writes its ID to `wrangler.jsonc`.
-4. Run `npm run db:init` to create the order table.
+2. Run `npm install` in the project folder. The free Cloudflare D1 database has been created for this project and its ID is in `wrangler.jsonc`.
+3. Connect the GitHub repository to **Workers & Pages** in your Cloudflare dashboard, select `soko-market-ug`, and set the deploy command to `npm run deploy`. The deploy command creates the order table if it does not exist and deploys the Worker.
+4. If deploying locally instead, run `npx wrangler login` and authenticate to your own Cloudflare account, then run `npm run deploy`.
 5. From the terminal, securely add your Flutterwave **live secret key** and the **webhook secret hash** configured in your Flutterwave dashboard:
 
    ```text
