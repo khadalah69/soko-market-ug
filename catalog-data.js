@@ -2,8 +2,10 @@
   const photo = (id) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=700&q=80`;
   const photos = {
     phone: photo("photo-1592899677977-9c10ca588bbd"),
-    phoneAlt: photo("photo-1511707171634-5f897ff02aa9"),
-    phoneAlt2: photo("photo-1598327105666-5b89351aff97"),
+    phoneAlt: photo("photo-1709744722656-9b850470293f"),
+    iphone: photo("photo-1726587912121-ea21fcc57ff8"),
+    samsung: photo("photo-1738830234395-a351829a1c7b"),
+    pixel: photo("photo-1724322535079-11b08f7f5c88"),
     tablet: photo("photo-1544244015-0df4b3ffc6b0"),
     headphones: photo("photo-1505740420928-5e560c06d30e"),
     speaker: photo("photo-1608043152269-423dbba4e7e1"),
@@ -14,12 +16,16 @@
     camera: photo("photo-1516035069371-29a1b244cc32"),
     console: photo("photo-1606813907291-d86efa9b94db"),
     sneaker: photo("photo-1542291026-7eec264c27ff"),
+    clothing: photo("photo-1584865288642-42078afe6942"),
     dress: photo("photo-1539109136881-3be0616acf4b"),
-    shirt: photo("photo-1521572163474-6864f9cf17ab"),
     bag: photo("photo-1553062407-98eeb64c6a62"),
     chair: photo("photo-1503602642458-232111445657"),
     bedroom: photo("photo-1505693416388-ac5ce068fe85"),
-    kitchen: photo("photo-1556911220-e15b29be8c8f"),
+    shelf: photo("photo-1615884241431-d07c87e30ab2"),
+    basket: photo("photo-1645542554266-b275c100103c"),
+    cookware: photo("photo-1511224931379-b4e4324ea7fc"),
+    containers: photo("photo-1786417340764-b918ff6e8562"),
+    mouse: photo("photo-1527864550417-7fd91fc51a46"),
     lamp: photo("photo-1507473885765-e6ed057f782c"),
     skincare: photo("photo-1608248543803-ba4f8c70ae0b"),
     serum: photo("photo-1620916566398-39f1143ab7be"),
@@ -37,14 +43,33 @@
     ["Xiaomi", "Redmi Note 14", 890000], ["Xiaomi", "Redmi Note 14 Pro 5G", 1190000],
     ["Xiaomi", "POCO X7 Pro", 1690000], ["Tecno", "Camon 40 Pro", 1250000],
     ["Tecno", "Spark 40 Pro", 780000], ["Infinix", "Note 50 Pro", 990000],
-    ["Infinix", "Hot 50 Pro+", 820000], ["OnePlus", "Nord 4", 1890000]
+    ["Infinix", "Hot 50 Pro+", 820000], ["OnePlus", "Nord 4", 1890000],
+    ["Apple", "iPhone 17", 3690000], ["Apple", "iPhone 17 Pro", 4590000],
+    ["Apple", "iPhone 17 Pro Max", 4990000], ["Apple", "iPhone 16", 3390000],
+    ["Apple", "iPhone 15", 2890000], ["Apple", "iPhone 15 Plus", 3290000],
+    ["Apple", "iPhone 15 Pro", 3590000], ["Apple", "iPhone 15 Pro Max", 4190000],
+    ["Samsung", "Galaxy S24", 3190000], ["Samsung", "Galaxy S24+", 3690000],
+    ["Samsung", "Galaxy S24 Ultra", 3990000], ["Samsung", "Galaxy Z Fold6", 4990000],
+    ["Samsung", "Galaxy Z Flip6", 3690000], ["Samsung", "Galaxy A26 5G", 890000],
+    ["Samsung", "Galaxy A16 5G", 650000], ["Google", "Pixel 8", 2290000],
+    ["Google", "Pixel 8 Pro", 3190000], ["Google", "Pixel 8a", 1890000],
+    ["Google", "Pixel 7a", 1490000], ["Xiaomi", "Xiaomi 15", 3290000],
+    ["Xiaomi", "Xiaomi 14T", 2190000], ["Xiaomi", "Redmi Note 13", 690000],
+    ["Xiaomi", "Redmi Note 13 Pro", 1090000], ["Xiaomi", "POCO X6", 990000],
+    ["Xiaomi", "POCO X6 Pro", 1390000], ["Xiaomi", "POCO F7", 1890000],
+    ["Tecno", "Camon 30", 990000], ["Tecno", "Camon 30 Pro", 1390000],
+    ["Tecno", "Spark 30 Pro", 690000], ["Tecno", "Phantom V Fold2", 3690000],
+    ["Infinix", "Note 40 Pro", 890000], ["Infinix", "Note 50", 790000],
+    ["Infinix", "Zero 40", 1190000], ["Infinix", "Hot 50", 590000],
+    ["OnePlus", "OnePlus 13", 3890000], ["OnePlus", "OnePlus 13R", 2890000],
+    ["OnePlus", "OnePlus 12", 3290000], ["OnePlus", "Nord 3", 1690000],
+    ["OnePlus", "Nord CE4", 1490000], ["Nothing", "Phone (2a)", 1590000],
+    ["Nothing", "Phone (3a)", 1990000], ["Motorola", "Edge 50 Fusion", 1690000],
+    ["Motorola", "Moto G85", 1090000], ["OPPO", "Reno12 5G", 1890000],
+    ["vivo", "V40 5G", 2190000]
   ];
   const phoneVariants = [
-    ["128GB · Black", 0], ["128GB · Blue", 0], ["128GB · Silver", 0],
-    ["256GB · Black", 180000], ["256GB · Blue", 180000],
-    ["256GB · Silver", 180000], ["512GB · Black", 420000],
-    ["512GB · Blue", 420000], ["512GB · Silver", 420000],
-    ["256GB · Green", 180000]
+    ["128GB storage", 0], ["256GB storage", 180000], ["512GB storage", 420000]
   ];
   const electronicsModels = [
     ["Apple", "iPad Air 11-inch", 2390000, "tablet"],
@@ -70,26 +95,32 @@
     ["Sony", "Alpha ZV-E10 Mirrorless Camera", 3590000, "camera"],
     ["Sony", "PlayStation 5 Slim Digital Edition", 2190000, "console"],
     ["Nintendo", "Switch OLED Model", 1690000, "console"],
-    ["Anker", "PowerCore 20K USB-C Power Bank", 245000, "powerbank"],
-    ["Logitech", "MX Master 3S Wireless Mouse", 399000, "headphones"]
+    ["Xiaomi", "Mi Power Bank 20K USB-C", 245000, "powerbank"],
+    ["Logitech", "MX Master 3S Wireless Mouse", 399000, "mouse"]
   ];
   const genericVariants = ["Black", "White", "Silver", "Blue", "Graphite", "Rose", "Green", "Navy", "Sand", "Red"];
+  function phonePhotoKey(brand, name) {
+    if (brand === "Apple" && name === "iPhone 16 Pro") return "iphone";
+    if (brand === "Samsung" && name === "Galaxy S25 Ultra") return "samsung";
+    if (brand === "Google" && /Pixel 9 Pro/.test(name)) return "pixel";
+    return "phoneAlt";
+  }
   const otherModels = {
     "Fashion": [
       ["Stride", "Everyday Running Sneakers", 130000, "sneaker"],
       ["Moyo", "Linen Blend Weekend Dress", 99000, "dress"],
-      ["Moyo", "Classic Cotton T-Shirt", 45000, "shirt"],
+      ["Moyo", "Classic Cotton T-Shirt", 45000, "clothing"],
       ["Stride", "Lightweight Walking Shoes", 145000, "sneaker"],
-      ["Moyo", "Relaxed Fit Chino Trousers", 89000, "shirt"],
+      ["Moyo", "Relaxed Fit Chino Trousers", 89000, "clothing"],
       ["Moyo", "Everyday Canvas Backpack", 79000, "bag"]
     ],
     "Home & Living": [
       ["Habitat", "Oak & Weave Accent Chair", 527000, "chair"],
       ["Habitat", "Soft Glow Ceramic Table Lamp", 168000, "lamp"],
       ["Habitat", "Cotton Duvet Cover Set", 185000, "bedroom"],
-      ["Habitat", "Modern Floating Wall Shelf", 119000, "chair"],
-      ["Habitat", "Woven Storage Basket Set", 85000, "chair"],
-      ["Daywell", "Stainless Steel Cookware Set", 245000, "kitchen"]
+      ["Habitat", "Modern Floating Wall Shelf", 119000, "shelf"],
+      ["Habitat", "Woven Storage Basket Set", 85000, "basket"],
+      ["Daywell", "Stainless Steel Cookware Set", 245000, "cookware"]
     ],
     "Beauty": [
       ["Glow Lab", "Daily Glow Skincare Set", 94000, "skincare"],
@@ -103,7 +134,7 @@
       ["Kahawa Co.", "Fresh Roast Coffee Beans 1kg", 42000, "coffee"],
       ["Daywell", "Insulated Everyday Water Bottle", 28000, "bottle"],
       ["Kahawa Co.", "Ugandan Arabica Ground Coffee 500g", 26000, "coffee"],
-      ["Daywell", "Reusable Food Storage Container Set", 39000, "bottle"],
+      ["Daywell", "Reusable Food Storage Container Set", 39000, "containers"],
       ["Kahawa Co.", "Dark Roast Coffee Pods 10-pack", 18000, "coffee"],
       ["Daywell", "Glass Water Bottle with Sleeve", 22000, "bottle"]
     ]
@@ -137,7 +168,12 @@
     }
     addVariants(
       "Phones & Tablets",
-      phoneModels.map(([brand, name, price], index) => [brand, name, price, ["phone", "phoneAlt", "phoneAlt2"][index % 3]]),
+      phoneModels.map(([brand, name, price]) => [
+        brand,
+        name,
+        price,
+        phonePhotoKey(brand, name)
+      ]),
       phoneVariants,
       193,
       (model, variant, adjustment) => {
@@ -151,14 +187,14 @@
     addVariants(
       "Electronics",
       electronicsModels,
-      genericVariants.map((name, index) => [name, index < 5 ? 0 : 25000]),
+      genericVariants.map((name, index) => [`${index < 5 ? "Standard" : "Value"} listing ${index + 1}`, index < 5 ? 0 : 25000]),
       189
     );
     for (const [category, models] of Object.entries(otherModels)) {
       addVariants(
         category,
         models,
-        genericVariants.slice(0, 5).map((variant, index) => [`${variant} edition`, index * 3000]),
+        genericVariants.slice(0, 5).map((_, index) => [`Sample listing ${index + 1}`, index * 3000]),
         23
       );
     }

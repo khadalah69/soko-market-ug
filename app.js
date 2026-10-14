@@ -11,23 +11,24 @@ const defaultProducts = [
   { id: "bottle-a", name: "Insulated Everyday Water Bottle", category: "Supermarket", brand: "Daywell", price: 28000, oldPrice: 37000, rating: 4.3, reviews: 91, badge: "UNDER 30K", image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=700&q=80", featured: 10 },
   { id: "dress-a", name: "Weekend Linen Blend Dress", category: "Fashion", brand: "Moyo", price: 99000, oldPrice: 142000, rating: 4.5, reviews: 28, badge: "−30%", image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=700&q=80", featured: 11 },
   { id: "serum-a", name: "Vitamin C Brightening Serum", category: "Beauty", brand: "Glow Lab", price: 54000, oldPrice: 68000, rating: 4.6, reviews: 57, badge: "TOP RATED", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80", featured: 12 },
-  { id: "speaker-a", name: "Boom Portable Bluetooth Speaker", category: "Electronics", brand: "Soundcore", price: 189000, oldPrice: 249000, rating: 4.8, reviews: 97, badge: "BESTSELLER", image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80", featured: 13 },
+  { id: "speaker-a", name: "Boom Portable Bluetooth Speaker", category: "Electronics", brand: "JBL", price: 189000, oldPrice: 249000, rating: 4.8, reviews: 97, badge: "BESTSELLER", image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80", featured: 13 },
   { id: "speaker-b", name: "Pocket Mini Waterproof Speaker", category: "Electronics", brand: "JBL", price: 89000, oldPrice: 125000, rating: 4.6, reviews: 68, badge: "−29%", image: "https://images.unsplash.com/photo-1589003077984-894e133dabab?auto=format&fit=crop&w=700&q=80", featured: 14 },
-  { id: "soundbar-a", name: "Cinema Soundbar with Subwoofer", category: "Electronics", brand: "Sony", price: 399000, oldPrice: 499000, rating: 4.7, reviews: 42, badge: "−20%", image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=700&q=80", featured: 15 },
+  { id: "soundbar-a", name: "Cinema Bookshelf Speaker", category: "Electronics", brand: "Audio", price: 399000, oldPrice: 499000, rating: 4.7, reviews: 42, badge: "−20%", image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=700&q=80", featured: 15 },
   { id: "tv-a", name: "4K Smart TV 50-inch", category: "Electronics", brand: "Vision", price: 1290000, oldPrice: 1590000, rating: 4.6, reviews: 55, badge: "−19%", image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80", featured: 16 },
   { id: "laptop-a", name: "Everyday Laptop 15-inch, 16GB RAM", category: "Electronics", brand: "Lenovo", price: 2450000, oldPrice: 2890000, rating: 4.7, reviews: 36, badge: "−15%", image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80", featured: 17 },
   { id: "camera-a", name: "Pocket Digital Camera with Zoom", category: "Electronics", brand: "Canon", price: 650000, oldPrice: 790000, rating: 4.5, reviews: 24, badge: "−18%", image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=80", featured: 18 },
-  { id: "iphone-16-a", name: "iPhone 16 128GB — Black", category: "Phones & Tablets", brand: "Apple", price: 3250000, oldPrice: 3690000, rating: 4.8, reviews: 112, badge: "POPULAR", image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=700&q=80", featured: 19 },
-  { id: "galaxy-s25-a", name: "Galaxy S25 256GB — Navy", category: "Phones & Tablets", brand: "Samsung", price: 3890000, oldPrice: 4290000, rating: 4.8, reviews: 93, badge: "NEW ARRIVAL", image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=700&q=80", featured: 20 },
-  { id: "galaxy-a56-a", name: "Galaxy A56 5G 256GB — Graphite", category: "Phones & Tablets", brand: "Samsung", price: 1490000, oldPrice: 1690000, rating: 4.7, reviews: 81, badge: "BESTSELLER", image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=700&q=80", featured: 21 },
+  { id: "iphone-16-a", name: "iPhone 16 Pro 128GB", category: "Phones & Tablets", brand: "Apple", price: 3250000, oldPrice: 3690000, rating: 4.8, reviews: 112, badge: "POPULAR", image: "https://images.unsplash.com/photo-1726587912121-ea21fcc57ff8?auto=format&fit=crop&w=700&q=80", featured: 19 },
+  { id: "galaxy-s25-a", name: "Galaxy S25 Ultra 256GB", category: "Phones & Tablets", brand: "Samsung", price: 3890000, oldPrice: 4290000, rating: 4.8, reviews: 93, badge: "NEW ARRIVAL", image: "https://images.unsplash.com/photo-1738830234395-a351829a1c7b?auto=format&fit=crop&w=700&q=80", featured: 20 },
+  { id: "galaxy-a56-a", name: "Galaxy A56 5G 256GB", category: "Phones & Tablets", brand: "Samsung", price: 1490000, oldPrice: 1690000, rating: 4.7, reviews: 81, badge: "BESTSELLER", image: "https://images.unsplash.com/photo-1709744722656-9b850470293f?auto=format&fit=crop&w=700&q=80", featured: 21 },
   { id: "redmi-note-14-a", name: "Redmi Note 14 Pro 5G 256GB", category: "Phones & Tablets", brand: "Xiaomi", price: 1190000, oldPrice: 1390000, rating: 4.6, reviews: 76, badge: "GREAT VALUE", image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=700&q=80", featured: 22 },
-  { id: "pixel-9a-a", name: "Pixel 9a 128GB — Obsidian", category: "Phones & Tablets", brand: "Google", price: 2190000, oldPrice: 2490000, rating: 4.7, reviews: 48, badge: "POPULAR", image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=700&q=80", featured: 23 },
+  { id: "pixel-9a-a", name: "Pixel 9a 128GB", category: "Phones & Tablets", brand: "Google", price: 2190000, oldPrice: 2490000, rating: 4.7, reviews: 48, badge: "POPULAR", image: "https://images.unsplash.com/photo-1709744722656-9b850470293f?auto=format&fit=crop&w=700&q=80", featured: 23 },
   { id: "ps5-slim-a", name: "PlayStation 5 Slim Digital Edition", category: "Electronics", brand: "Sony", price: 2190000, oldPrice: 2490000, rating: 4.9, reviews: 67, badge: "GAMER PICK", image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=700&q=80", featured: 24 },
   { id: "airpods-pro-a", name: "AirPods Pro (2nd generation) with USB-C", category: "Electronics", brand: "Apple", price: 890000, oldPrice: 1050000, rating: 4.8, reviews: 84, badge: "TOP RATED", image: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=700&q=80", featured: 25 },
-  { id: "anker-powerbank-a", name: "PowerCore 20K USB-C Power Bank", category: "Electronics", brand: "Anker", price: 245000, oldPrice: 299000, rating: 4.7, reviews: 59, badge: "TRAVEL PICK", image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=700&q=80", featured: 26 },
+  { id: "anker-powerbank-a", name: "Mi Power Bank 20K USB-C", category: "Electronics", brand: "Xiaomi", price: 245000, oldPrice: 299000, rating: 4.7, reviews: 59, badge: "TRAVEL PICK", image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=700&q=80", featured: 26 },
   ...globalThis.SOKO_CATALOG.buildExpansion()
 ];
 
+const defaultProductIds = new Set(defaultProducts.map((product) => product.id));
 const categories = ["Phones & Tablets", "Electronics", "Fashion", "Home & Living", "Beauty", "Supermarket"];
 const maximumPrice = 5000000;
 const freeDeliveryThreshold = 150000;
@@ -85,7 +86,7 @@ function loadProducts() {
       }
       validIds.add(product.id);
     }
-    return [...saved, ...defaultProducts.filter((product) => !validIds.has(product.id))];
+    return [...defaultProducts, ...saved.filter((product) => !defaultProductIds.has(product.id))];
   } catch (error) {
     console.error("Could not load the saved product catalog.", error);
     showToast("Saved products could not be loaded. The default catalog is shown.");
